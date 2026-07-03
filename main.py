@@ -19,8 +19,9 @@ def add_expense(expenses):
     amount = get_amount()
     
     category = get_category()
+    
+    description = get_description()
             
-    description = input("Enter the expense description: ")
     date = input("Enter the expense date: ")
     
     expense = Expense(expense_id, amount, category, description, date)
@@ -56,6 +57,19 @@ def get_category():
             return category 
         else: 
             print("That's not a valid category please try again!")
+
+
+def get_description(): 
+    
+    while True: 
+        description = input("Enter the expense description: ")
+        description = description.strip()
+        
+        if description: 
+            return description
+        
+        print("Description cannot be empty. Please try again.")
+        
             
     
 def view_expenses(expenses): 
