@@ -13,16 +13,12 @@ CATEGORIES = [
 expenses = []
 
 def add_expense(expenses): 
+    
     expense_id = len(expenses) + 1
     
     amount = get_amount()
     
-    while True: 
-        category = input("Enter the expense category: ")
-        if category in CATEGORIES:
-            break
-        else: 
-            print("That's not a valid category please try again!")
+    category = get_category()
             
     description = input("Enter the expense description: ")
     date = input("Enter the expense date: ")
@@ -34,6 +30,7 @@ def add_expense(expenses):
     
 
 def get_amount(): 
+    
     while True: 
         try: 
             amount = float(input("Enter the expense amount: "))
@@ -44,7 +41,22 @@ def get_amount():
         
         except ValueError: 
             print("Invalid amount. Please enter a valid number.")
+            
+
+def get_category(): 
     
+    print("Please select one of the following categories: ")
+    for category in CATEGORIES: 
+        print(f"{category}")
+        
+    while True: 
+        category = input("Enter the expense category: ")
+        category = category.title().strip()
+        if category in CATEGORIES:
+            return category 
+        else: 
+            print("That's not a valid category please try again!")
+            
     
 def view_expenses(expenses): 
     
