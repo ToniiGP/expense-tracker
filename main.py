@@ -30,11 +30,19 @@ def add_expense(expenses):
     expense = Expense(expense_id, amount, category, description, date)
     expenses.append(expense)
     
-    print("Expense added succesfully!")
-            
-    
+    print("Expense added successfully!")
     
 
+def view_expenses(expenses): 
+    
+    if expenses:
+        print("\nExpenses: ")
+        for expense in expenses: 
+            print(expense)
+    else: 
+        print("There are not expenses in the system.")
+        
+        
 def display_menu(): 
     
     print("\nExpenses Tracker")
@@ -52,7 +60,7 @@ def main():
         if choice == "1": 
             add_expense(expenses)
         elif choice == "2": 
-            print("View expenses selected")
+            view_expenses(expenses)
         elif choice == "3": 
             print("Goodbye!!")
             break

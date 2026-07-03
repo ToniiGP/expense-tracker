@@ -5,6 +5,9 @@ class Expense:
         self.category = category 
         self.description = description
         self.date = date 
+    
+    def __str__(self): 
+        return f"ID: {self.id} | AMOUNT: ${self.amount:.2f} | CATEGORY: {self.category} | DESC: {self.description} | DATE: {self.date}"
         
         
         
