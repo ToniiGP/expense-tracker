@@ -1,4 +1,5 @@
 from expense import Expense
+from datetime import date 
 
 CATEGORIES = [
     "Food",
@@ -22,7 +23,7 @@ def add_expense(expenses):
     
     description = get_description()
             
-    date = input("Enter the expense date: ")
+    date = get_date()
     
     expense = Expense(expense_id, amount, category, description, date)
     expenses.append(expense)
@@ -37,9 +38,9 @@ def get_amount():
             amount = float(input("Enter the expense amount: "))
             if amount <= 0: 
                 print("Amount should be a positive value, please try again")
-                continue 
-            return amount
-        
+            else:
+                return amount
+            
         except ValueError: 
             print("Invalid amount. Please enter a valid number.")
             
@@ -69,7 +70,10 @@ def get_description():
             return description
         
         print("Description cannot be empty. Please try again.")
-        
+
+
+def get_date(): 
+    return date.today().isoformat()
             
     
 def view_expenses(expenses): 
