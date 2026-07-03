@@ -15,7 +15,7 @@ expenses = []
 def add_expense(expenses): 
     expense_id = len(expenses) + 1
     
-    amount = float(input("Enter the expense amount: "))
+    amount = get_amount()
     
     while True: 
         category = input("Enter the expense category: ")
@@ -33,6 +33,19 @@ def add_expense(expenses):
     print("Expense added successfully!")
     
 
+def get_amount(): 
+    while True: 
+        try: 
+            amount = float(input("Enter the expense amount: "))
+            if amount <= 0: 
+                print("Amount should be a positive value, please try again")
+                continue 
+            return amount
+        
+        except ValueError: 
+            print("Invalid amount. Please enter a valid number.")
+    
+    
 def view_expenses(expenses): 
     
     if expenses:
@@ -40,7 +53,7 @@ def view_expenses(expenses):
         for expense in expenses: 
             print(expense)
     else: 
-        print("There are not expenses in the system.")
+        print("There are no expenses in the system.")
         
         
 def display_menu(): 
