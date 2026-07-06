@@ -21,9 +21,9 @@ class Expense:
     @classmethod
     def from_dict(cls, expense_data):
         return cls(
-            expense_data["id"],
+            expense_data["id:"],
             expense_data["amount"],
-            expense_data["category"],
-            expense_data["description"],
-            expense_data["date"]
+            expense_data["category:"],
+            expense_data["description:"],
+            expense_data["date:"]
     )   
