@@ -115,15 +115,47 @@ def load_expenses():
     
     
     return new_expenses 
+
+
+def get_expense_id(): 
+    while True: 
+        try: 
+            expense_id = int(input("Enter the id of the expense you want to delete: "))
+            if expense_id <= 0: 
+                print("ID should be a positive  whole number, please try again")
+            else:
+                return expense_id
+            
+        except ValueError: 
+            print("Invalid ID. Please enter a valid whole number.")
     
+    
+
+def delete_expense(expenses): 
+    
+    if not expenses: 
+        print("There are not expenses in the system")
+        return 
         
+    expense_id = get_expense_id()
+    
+    for expense in expenses: 
+        if expense.id == expense_id: 
+            expenses.remove(expense)
+            print("Expense removed succesfully")
+            save_expenses(expenses)
+            return
+        
+    print(f"Expense {expense_id} doesn't exist")
+      
         
 def display_menu(): 
     
     print("\nExpenses Tracker")
     print("1. Add expense")
     print("2. View expenses")
-    print("3. Exit")
+    print("3. Delete expense")
+    print("4. Exit")
 
 
 def main(): 
@@ -131,7 +163,7 @@ def main():
     expenses = load_expenses()
     
     while True: 
-        load_expenses()
+        
         display_menu()
         choice = input("Please choose an option: ")
         
@@ -140,6 +172,8 @@ def main():
         elif choice == "2": 
             view_expenses(expenses)
         elif choice == "3": 
+            delete_expense(expenses)
+        elif choice == "4": 
             print("Goodbye!!")
             break
         else: 
