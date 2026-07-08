@@ -5,7 +5,7 @@ from input_helpers import get_amount, get_category, get_date, get_description, g
 
 def add_expense(expenses): 
     
-    expense_id = len(expenses) + 1
+    expense_id = generate_expense_id(expenses)
     
     amount = get_amount()
     
@@ -48,6 +48,20 @@ def delete_expense(expenses):
             return
         
     print(f"Expense {expense_id} doesn't exist")
+    
+
+def generate_expense_id(expenses): 
+    if not expenses: 
+        return 1 
+    
+    max_id = 0 
+    
+    for expense in expenses: 
+        if expense.id > max_id:
+            max_id = expense.id 
+    
+    return max_id + 1 
+            
       
         
 def display_menu(): 
