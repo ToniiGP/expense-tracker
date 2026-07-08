@@ -35,7 +35,7 @@ def view_expenses(expenses):
 def delete_expense(expenses): 
     
     if not expenses: 
-        print("There are not expenses in the system")
+        print("There are no expenses in the system.")
         return 
         
     expense_id = get_expense_id()
@@ -43,7 +43,7 @@ def delete_expense(expenses):
     for expense in expenses: 
         if expense.id == expense_id: 
             expenses.remove(expense)
-            print("Expense removed succesfully")
+            print("Expense removed successfully.")
             save_expenses(expenses)
             return
         
