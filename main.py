@@ -1,5 +1,5 @@
 from storage import load_expenses
-from expense_manager import add_expense, view_expenses, delete_expense, edit_expense
+from expense_manager import add_expense, view_expenses, delete_expense, edit_expense, view_statistics
  
 def display_menu(): 
     
@@ -8,7 +8,8 @@ def display_menu():
     print("2. View expenses")
     print("3. Delete expense")
     print("4. Edit expense")
-    print("5. Exit")
+    print("5. View statistics")
+    print("6. Exit")
 
 
 def main(): 
@@ -29,12 +30,12 @@ def main():
         elif choice == "4": 
             edit_expense(expenses)
         elif choice == "5": 
+            view_statistics(expenses)
+        elif choice == "6": 
             print("Goodbye!!")
             break
         else: 
             print("Invalid option, please try again!") 
-
-
 
 if __name__ == "__main__": 
     main()
