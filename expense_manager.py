@@ -48,6 +48,43 @@ def delete_expense(expenses):
         
     print(f"Expense {expense_id} doesn't exist")
     
+    
+def edit_expense(expenses): 
+    if not expenses:
+        print("There are no expenses in the system.")
+        return
+    
+    view_expenses(expenses)
+    
+    expense_id = get_expense_id()
+    
+    for expense in expenses: 
+        if expense.id == expense_id: 
+            
+            print("Please choose one of the following options for the field you would like to modify: ")
+            print("1. Amount")
+            print("2. Category")
+            print("3. Description")
+            selection = input("enter option number: ")
+                
+            if selection == "1": 
+                expense.amount = get_amount()
+            elif selection == "2": 
+                expense.category = get_category()
+            elif selection == "3": 
+                expense.description = get_description()
+            else: 
+                print("That's not a valid option please try again")
+                    
+            
+            save_expenses(expenses)
+            print("Expense updated successfully.")
+            return
+            
+    print(f"Expense {expense_id} doesn't exist.")
+                    
+    
+    
 
 def generate_expense_id(expenses): 
     if not expenses: 

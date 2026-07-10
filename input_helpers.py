@@ -58,7 +58,7 @@ def get_date():
 def get_expense_id(): 
     while True: 
         try: 
-            expense_id = int(input("Enter the id of the expense you want to delete: "))
+            expense_id = int(input("Enter the id of the expense:  "))
             if expense_id <= 0: 
                 print("ID should be a positive  whole number, please try again")
             else:
