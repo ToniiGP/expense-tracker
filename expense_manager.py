@@ -82,7 +82,30 @@ def edit_expense(expenses):
             return
             
     print(f"Expense {expense_id} doesn't exist.")
-                    
+
+
+def view_statistics(expenses): 
+    if not expenses: 
+        print("There are no expenses in the system")
+        return 
+    
+    total = 0 
+    max_amount = 0 
+    min_amount = expenses[0].amount
+    
+    for expense in expenses: 
+        total += expense.amount
+        if expense.amount > max_amount: 
+            max_amount = expense.amount 
+        if expense.amount < min_amount: 
+            min_amount = expense.amount 
+                
+    avg = total / len(expenses)
+    
+    print(f"Total amount spent: ${total:.2f}")
+    print(f"Average: ${avg:.2f}")
+    print(f"Highest expense: ${max_amount:.2f}")
+    print(f"Lowest expense: ${min_amount:.2f}")
     
     
 
