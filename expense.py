@@ -7,7 +7,19 @@ class Expense:
         self.date = date 
     
     def __str__(self): 
-        return f"ID: {self.id} | AMOUNT: ${self.amount:.2f} | CATEGORY: {self.category} | DESC: {self.description} | DATE: {self.date}"
+        
+        description = self.description 
+        
+        if len(description) > 30: 
+            description = description[:27] + "..."
+            
+        return(
+        f"{self.id:<4}"
+        f"${self.amount:<10.2f}"
+        f"{self.category:<18}"
+        f"{description:<30}"
+        f"{self.date:<25}"
+    )
         
     def to_dict(self): 
         return{

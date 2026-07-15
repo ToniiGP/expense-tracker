@@ -24,9 +24,14 @@ def add_expense(expenses):
 def view_expenses(expenses): 
     
     if expenses:
-        print("\nExpenses: ")
+        print("-" * 75)
+        print(f"{'ID':<4}{'Amount':<11}{'Category':<18}{'Description':<30}{'Date'}")
+        print("-" * 75)
+        
         for expense in expenses: 
             print(expense)
+        print("-" * 75)
+        
     else: 
         print("There are no expenses in the system.")
         
@@ -101,11 +106,12 @@ def view_statistics(expenses):
             min_amount = expense.amount 
                 
     avg = total / len(expenses)
-    
+    print("========== Expense Statistics ==========")
     print(f"Total amount spent: ${total:.2f}")
     print(f"Average: ${avg:.2f}")
     print(f"Highest expense: ${max_amount:.2f}")
     print(f"Lowest expense: ${min_amount:.2f}")
+    print("========================================")
     
 def filter_expenses_category(expenses): 
     
