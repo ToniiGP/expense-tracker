@@ -114,16 +114,34 @@ def filter_expenses_category(expenses):
         return
         
     category = get_category()
-    expenses_category = []
+    matching_expenses = []
     for expense in expenses: 
         if expense.category == category: 
-            expenses_category.append(expense)
+            matching_expenses.append(expense)
         
-    if not expenses_category: 
+    if not matching_expenses: 
         print("No expenses exist with that category")
     else: 
-        view_expenses(expenses_category)
+        view_expenses(matching_expenses)
         
+        
+def filter_expenses_description(expenses):
+    
+    if not expenses: 
+        print("There are not expenses in the system") 
+        return
+    
+    matching_expenses = []
+    word = input("Enter a keyword to search for (example: coffee):").strip()
+    
+    for expense in expenses: 
+        if word.lower() in expense.description.lower(): 
+            matching_expenses.append(expense)
+            
+    if not matching_expenses: 
+        print("No expenses match your search.")
+    else: 
+        view_expenses(matching_expenses)
     
 
 def generate_expense_id(expenses): 
