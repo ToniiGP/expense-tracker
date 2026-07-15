@@ -107,6 +107,23 @@ def view_statistics(expenses):
     print(f"Highest expense: ${max_amount:.2f}")
     print(f"Lowest expense: ${min_amount:.2f}")
     
+def filter_expenses_category(expenses): 
+    
+    if not expenses:
+        print("There are not expenses in the system") 
+        return
+        
+    category = get_category()
+    expenses_category = []
+    for expense in expenses: 
+        if expense.category == category: 
+            expenses_category.append(expense)
+        
+    if not expenses_category: 
+        print("No expenses exist with that category")
+    else: 
+        view_expenses(expenses_category)
+        
     
 
 def generate_expense_id(expenses): 
