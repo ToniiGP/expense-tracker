@@ -1,4 +1,5 @@
 import sqlite3
+from expense import Expense
 
 DATABASE_FILE = "expenses.db"
 
@@ -42,3 +43,24 @@ def insert_expense(expense):
     
     connection.commit()
     connection.close()
+    
+    
+def load_expenses_from_db(): 
+    
+    expenses = []
+    
+    connection = sqlite3.connect(DATABASE_FILE)
+    
+    cursor = connection.execute("SELECT * FROM expenses")
+    rows = cursor.fetchall()
+    
+    for row in rows:
+        expense = Expense(*row)
+        expenses.append(expense)
+    
+    connection.close()
+    
+    return expenses 
+
+    
+    
