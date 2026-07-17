@@ -1,7 +1,7 @@
 from expense import Expense
 from storage import save_expenses
 from input_helpers import get_amount, get_category, get_date, get_description, get_expense_id
-from database import insert_expense, delete_expense_from_db
+from database import insert_expense, delete_expense_from_db, edit_expense_from_db
 
 def add_expense(expenses): 
     
@@ -82,9 +82,10 @@ def edit_expense(expenses):
                 expense.description = get_description()
             else: 
                 print("That's not a valid option please try again")
+                return
                     
             
-            save_expenses(expenses)
+            edit_expense_from_db(expense)
             print("Expense updated successfully.")
             return
             

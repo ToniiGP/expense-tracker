@@ -76,6 +76,34 @@ def delete_expense_from_db(expense_id):
     connection.commit()
     connection.close()
     
+
+def edit_expense_from_db(expense):
+    
+    connection = sqlite3.connect(DATABASE_FILE)
+    
+    connection.execute(
+        """
+        UPDATE expenses
+        SET amount = ?,
+            category = ?,
+            description = ?,
+            date = ?
+        WHERE id = ?
+        """,
+        (
+            expense.amount,
+            expense.category,
+            expense.description,
+            expense.date,
+            expense.id
+        )
+    )
+    
+    connection.commit()
+    connection.close()
+    
+
+    
     
     
     
