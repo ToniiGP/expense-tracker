@@ -1,6 +1,7 @@
 from expense import Expense
 from storage import save_expenses
 from input_helpers import get_amount, get_category, get_date, get_description, get_expense_id
+from database import insert_expense
 
 def add_expense(expenses): 
     
@@ -17,6 +18,7 @@ def add_expense(expenses):
     expense = Expense(expense_id, amount, category, description, date)
     expenses.append(expense)
     save_expenses(expenses)
+    insert_expense(expense) #insert expense in to the database 
     
     print("Expense added successfully!")
     
