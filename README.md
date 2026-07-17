@@ -6,6 +6,10 @@ The application allows users to manage personal expenses through a simple comman
 
 ---
 
+## Demo
+
+![Expense Tracker Demo](assets/expense_tracker_demo.gif)
+
 ## Features
 
 - Add new expenses
