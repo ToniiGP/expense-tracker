@@ -1,4 +1,4 @@
-from storage import load_expenses, export_to_csv
+from storage import export_to_csv
 from expense_manager import add_expense, view_expenses, delete_expense, edit_expense, view_statistics, filter_expenses_category, filter_expenses_description
 from database import initialize_database, load_expenses_from_db
  

@@ -1,25 +1,18 @@
 from expense import Expense
-from storage import save_expenses
 from input_helpers import get_amount, get_category, get_date, get_description, get_expense_id
-from database import insert_expense, delete_expense_from_db, edit_expense_from_db
+from database import insert_expense, delete_expense_from_db, update_expense_in_db
 
 def add_expense(expenses): 
     
-    expense_id = generate_expense_id(expenses)
-    
     amount = get_amount()
-    
     category = get_category()
-    
-    description = get_description()
-            
+    description = get_description()   
     date = get_date()
     
-    expense = Expense(expense_id, amount, category, description, date)
-    expenses.append(expense)
-    save_expenses(expenses)
-    insert_expense(expense) #insert expense in to the database 
     
+    expense = Expense(None, amount, category, description, date)
+    expense.id = insert_expense(expense)
+    expenses.append(expense)
     print("Expense added successfully!")
     
 
@@ -72,7 +65,7 @@ def edit_expense(expenses):
             print("1. Amount")
             print("2. Category")
             print("3. Description")
-            selection = input("enter option number: ")
+            selection = input("Enter option number: ")
                 
             if selection == "1": 
                 expense.amount = get_amount()
@@ -81,11 +74,11 @@ def edit_expense(expenses):
             elif selection == "3": 
                 expense.description = get_description()
             else: 
-                print("That's not a valid option please try again")
+                print("That's not a valid option. Please try again")
                 return
                     
             
-            edit_expense_from_db(expense)
+            update_expense_in_db(expense)
             print("Expense updated successfully.")
             return
             
@@ -119,7 +112,7 @@ def view_statistics(expenses):
 def filter_expenses_category(expenses): 
     
     if not expenses:
-        print("There are not expenses in the system") 
+        print("There are no expenses in the system") 
         return
         
     category = get_category()
@@ -137,11 +130,14 @@ def filter_expenses_category(expenses):
 def filter_expenses_description(expenses):
     
     if not expenses: 
-        print("There are not expenses in the system") 
+        print("There are no expenses in the system") 
         return
     
     matching_expenses = []
     word = input("Enter a keyword to search for (example: coffee):").strip()
+    if not word:
+        print("Search keyword cannot be empty.")
+        return
     
     for expense in expenses: 
         if word.lower() in expense.description.lower(): 
@@ -152,15 +148,3 @@ def filter_expenses_description(expenses):
     else: 
         view_expenses(matching_expenses)
     
-
-def generate_expense_id(expenses): 
-    if not expenses: 
-        return 1 
-    
-    max_id = 0 
-    
-    for expense in expenses: 
-        if expense.id > max_id:
-            max_id = expense.id 
-    
-    return max_id + 1 

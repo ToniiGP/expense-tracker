@@ -27,7 +27,7 @@ def initialize_database():
 def insert_expense(expense): 
     connection = sqlite3.connect(DATABASE_FILE)
     
-    connection.execute(
+    cursor = connection.execute(
         
         """
         INSERT INTO expenses (amount, category, description, date)
@@ -42,8 +42,12 @@ def insert_expense(expense):
     )
     
     connection.commit()
+    
+    expense_id = cursor.lastrowid
     connection.close()
     
+    return expense_id
+
     
 def load_expenses_from_db(): 
     
@@ -51,12 +55,17 @@ def load_expenses_from_db():
     
     connection = sqlite3.connect(DATABASE_FILE)
     
-    cursor = connection.execute("SELECT * FROM expenses")
+    cursor = connection.execute(
+        """
+        SELECT id, amount, category, description, date
+        FROM expenses
+        ORDER BY id
+        """
+    )
     rows = cursor.fetchall()
     
     for row in rows:
-        expense = Expense(*row)
-        expenses.append(expense)
+        expenses.append(Expense(*row))
     
     connection.close()
     
@@ -77,7 +86,7 @@ def delete_expense_from_db(expense_id):
     connection.close()
     
 
-def edit_expense_from_db(expense):
+def update_expense_in_db(expense):
     
     connection = sqlite3.connect(DATABASE_FILE)
     
