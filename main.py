@@ -1,4 +1,4 @@
-from storage import load_expenses
+from storage import load_expenses, export_to_csv
 from expense_manager import add_expense, view_expenses, delete_expense, edit_expense, view_statistics, filter_expenses_category, filter_expenses_description
  
 def display_menu(): 
@@ -12,7 +12,8 @@ def display_menu():
     print("5. View statistics")
     print("6. Filter by category")
     print("7. Search description")
-    print("8. Exit")
+    print("8. Export expenses to csv")
+    print("9. Exit")
 
 
 def main(): 
@@ -39,6 +40,8 @@ def main():
         elif choice == "7":
             filter_expenses_description(expenses)
         elif choice == "8": 
+            export_to_csv(expenses)
+        elif choice == "9": 
             print("Goodbye!!")
             break
         else: 
