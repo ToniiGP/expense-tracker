@@ -62,5 +62,21 @@ def load_expenses_from_db():
     
     return expenses 
 
+
+def delete_expense_from_db(expense_id): 
+    
+    connection = sqlite3.connect(DATABASE_FILE)
+    
+    connection.execute(
+        
+        "DELETE FROM expenses WHERE id = ?", 
+        (expense_id,) 
+    )    
+    
+    connection.commit()
+    connection.close()
+    
+    
+    
     
     

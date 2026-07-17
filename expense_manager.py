@@ -1,7 +1,7 @@
 from expense import Expense
 from storage import save_expenses
 from input_helpers import get_amount, get_category, get_date, get_description, get_expense_id
-from database import insert_expense
+from database import insert_expense, delete_expense_from_db
 
 def add_expense(expenses): 
     
@@ -48,9 +48,9 @@ def delete_expense(expenses):
     
     for expense in expenses: 
         if expense.id == expense_id: 
+            delete_expense_from_db(expense_id)
             expenses.remove(expense)
             print("Expense removed successfully.")
-            save_expenses(expenses)
             return
         
     print(f"Expense {expense_id} doesn't exist")
